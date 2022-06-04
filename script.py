@@ -3,9 +3,20 @@ import random
 
 
 def get_schoolkid(schoolkid_name):
-    schoolkid = Schoolkid.objects.filter(full_name__contains=schoolkid_name).first()
+    try:
+        schoolkid = Schoolkid.objects.get(full_name__contains=schoolkid_name)
+        
+        return schoolkid
+    
+    except Schoolkid.DoesNotExist:
+        print("""
+        Такого ученика нет в базе
+        Проверьте правильность написания фамилии и имени, а также их порядок 
+        (сначала фамилия, потом имя)
+        """)
 
-    return schoolkid
+    except Schoolkid.MultipleObjectsReturned:
+        print("Напишите фамилию и имя ученика")
 
 
 def fix_marks(schoolkid):
