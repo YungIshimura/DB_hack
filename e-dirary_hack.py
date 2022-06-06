@@ -17,9 +17,7 @@ def get_schoolkid(schoolkid_name):
 
 def fix_marks(schoolkid):
     schoolkid_bad_marks = Mark.objects.filter(points__in=[2, 3], schoolkid=schoolkid)
-    for bad_mark in schoolkid_bad_marks:
-        bad_mark.points = 5
-        bad_mark.save()
+    schoolkid_bad_marks.update(points = 5)
 
 
 def remove_chastisements(schoolkid):
