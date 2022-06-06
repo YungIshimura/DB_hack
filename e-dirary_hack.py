@@ -9,11 +9,7 @@ def get_schoolkid(schoolkid_name):
         return schoolkid
     
     except Schoolkid.DoesNotExist:
-        print("""
-        Такого ученика нет в базе
-        Проверьте правильность написания фамилии и имени, а также их порядок 
-        (сначала фамилия, потом имя)
-        """)
+        print("Такого ученика нет в базе \nПроверьте правильность написания фамилии и имени, а также их порядок \n(сначала фамилия, потом имя)")
 
     except Schoolkid.MultipleObjectsReturned:
         print("Напишите фамилию и имя ученика")
