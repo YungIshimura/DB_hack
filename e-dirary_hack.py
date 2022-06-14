@@ -26,7 +26,7 @@ def remove_chastisements():
     schoolkid_chastisements.delete()
 
 
-def create_commendation(schoolkid, year_of_study, group_letter, subject_title):
+def create_commendation(schoolkid, subject_title):
 
     commendations = ["Молодец!", "Отлично!", "Хорошо!",
                      "Гораздо лучше, чем я ожидал!",
@@ -48,8 +48,8 @@ def create_commendation(schoolkid, year_of_study, group_letter, subject_title):
                      "Теперь у тебя точно все получится!"]
 
     try:
-        schoolkid_lessons = Lesson.objects.filter(year_of_study=year_of_study,
-                                                  group_letter=group_letter,
+        schoolkid_lessons = Lesson.objects.filter(year_of_study=schoolkid.year_of_study,
+                                                  group_letter=schoolkid.group_letter,
                                                   subject__title=subject_title)
         schoolkid_lesson = random.choice(schoolkid_lessons)
         Commendation.objects.create(text=random.choice(commendations),
@@ -59,4 +59,4 @@ def create_commendation(schoolkid, year_of_study, group_letter, subject_title):
                                     teacher=schoolkid_lesson.teacher)
 
     except IndexError:
-        print("Проверьте правильность написания предмета, года обучения и литеры класса")
+        print("Проверьте правильность написания предмета")
